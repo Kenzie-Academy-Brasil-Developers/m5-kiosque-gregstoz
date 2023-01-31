@@ -1,11 +1,11 @@
-from management import products_handler
+from management import product_handler
 from management import tab_handler
 from menu import products
 
-if __name__ == "__main__":
-    print(products_handler.get_product_by_id(28)) 
+def main():
+    print(product_handler.get_product_by_id(28)) 
 
-    print(products_handler.get_products_by_type("drink"))
+    print(product_handler.get_products_by_type("drink"))
 
 
     new_product = {
@@ -16,9 +16,9 @@ if __name__ == "__main__":
         "type": "fast-food"
     }
 
-    print(products_handler.add_product(products, **new_product))
+    print(product_handler.add_product(products, **new_product))
 
-    print(products_handler.menu_report())
+    print(product_handler.menu_report())
     
     table_1 = [{"_id": 1, "amount": 5}, {"_id": 19, "amount": 5}]
     table_2 = [
@@ -28,3 +28,7 @@ if __name__ == "__main__":
     ]
     print(tab_handler.calculate_tab(table_1))
     print(tab_handler.calculate_tab(table_2))
+
+
+if __name__ == "__main__":
+   main()

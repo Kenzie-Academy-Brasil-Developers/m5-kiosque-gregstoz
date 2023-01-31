@@ -21,16 +21,18 @@ def get_products_by_type(item_type):
 
 
 def add_product(menu, **args):
-    product = args
-    if len(menu) == 0:
-        product["_id"] = 1
-        return product
-    ids = []
-    for menu_ids in menu:
-        ids.append(menu_ids["_id"])
-    ids.sort()
-    product["_id"] = ids[-1] + 1
-    return product
+    new_ids = []
+
+    for obj in menu:
+        new_ids.append(obj['_id'])
+    new_ids.sort()
+
+    if (menu == []):
+        new_ids = 1
+    args['_id'] = new_ids = 1 if menu == [] else new_ids[-1] + 1
+
+    menu.append(args)
+    return args
         
 
 def menu_report():
@@ -51,6 +53,6 @@ def menu_report():
     types_counter = Counter(types)
     types_tuple = tuple(types_counter)
 
-    menu = f"Products Count: {len(products)} - Average Price: {media} - Most Common Type: {types_tuple[0]}"
+    menu = f"Products Count: {len(products)} - Average Price: ${media:2.1f} - Most Common Type: {types_tuple[0]}"
 
     return menu
